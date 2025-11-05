@@ -1,16 +1,81 @@
-# React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Step 1: Create a New React Project: npm create vite@latest my-react-app
 
-Currently, two official plugins are available:
+Choose:
+Framework → React
+Variant → JavaScript
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Run : 
+cd my-react-app
+npm install
+npm run dev
 
-## React Compiler
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Folder Structure & File Explanation :
 
-## Expanding the ESLint configuration
+1. node_modules/
+What it is:
+This folder contains all the installed npm dependencies (like React, Vite, etc.).
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+⚠️ Don’t edit this folder manually — it’s auto-managed by npm.
+
+2. public/
+Purpose:
+Contains static files that Vite won’t process.
+
+🗂 Example:
+vite.svg → default icon example.
+You can place things like:
+
+Favicon
+Images
+Robots.txt
+
+👉 These files are directly accessible (e.g. /vite.svg).
+
+3. src/ (Source Code Folder)
+All your React code lives here — components, CSS, images, logic, etc.
+Purpose: Entry point of your React app.
+It connects your React code to the real DOM.
+
+ReactDOM.createRoot(...) → tells React where to render (div#root in index.html)
+<App /> → main component rendered inside root div
+index.css → global styles
+
+b. App.jsx
+Purpose: The main component of your app — like the home layout.
+useState → React Hook to manage component state.
+JSX syntax (<>...</>) → how React defines UI.
+export default App → makes it usable in main.jsx.
+
+c. App.css
+Purpose: Component-level styling for App.jsx.
+
+d. index.css
+Purpose: Global CSS for your whole app (like body styles, fonts, etc.)
+
+e. assets/
+Purpose: Stores local images, icons, or static media.
+Example:
+react.svg — the React logo.
+
+
+4. index.html
+Purpose: The only HTML file in your project.
+<div id="root"> → React app mounts here.
+<script type="module"> → imports your React entry file (main.jsx).
+
+
+5. package.json
+Purpose: Manages project dependencies, scripts, and metadata.
+"dependencies" → libraries used in your project.
+"scripts" → commands you can run (like npm run dev).
+
+6. vite.config.js
+Purpose: Configuration file for Vite.
+Enables React plugin (JSX transformation, fast refresh).
+You can customize the server port, alias paths, and more.
+
+
+7. .gitignore
+Purpose: Lists files/folders Git should ignore.
