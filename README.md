@@ -1,81 +1,28 @@
+1. useState() — Managing Component State
+useState is used to store and update values that change over time in a component.
 
-Step 1: Create a New React Project: npm create vite@latest my-react-app
+How They Work:
 
-Choose:
-Framework → React
-Variant → JavaScript
+count → tracks how many times the user clicks the card.
+setCount(count + 1) updates this value every time the card <div> is clicked.
+hasLiked → keeps track of whether the user has liked the card or not.
 
-Run : 
-cd my-react-app
-npm install
-npm run dev
+Each call to setCount or setHasLiked re-renders the component so the UI stays in sync with the current state.
 
+2. useEffect() — Running Side Effects
+useEffect lets you run code after React renders the component — useful for logging, fetching data, subscriptions, etc.
 
-## Folder Structure & File Explanation :
+(a) Tracking “like” changes
+Runs only when hasLiked changes.
+Logs a message showing whether the specific movie (title) has been liked.
+[hasLiked] is the dependency array → React runs this effect only when that state value changes.
 
-1. node_modules/
-What it is:
-This folder contains all the installed npm dependencies (like React, Vite, etc.).
+(b) On initial render (mount)
+Runs only once — when the card first appears on the screen.
+The empty dependency array ([]) tells React to run it only on mount.
+Used here to confirm that the component has rendered successfully.
 
-⚠️ Don’t edit this folder manually — it’s auto-managed by npm.
+3. Conditional Rendering Example
+<h2>{title} <br /> {count ? count : null}</h2>
 
-2. public/
-Purpose:
-Contains static files that Vite won’t process.
-
-🗂 Example:
-vite.svg → default icon example.
-You can place things like:
-
-Favicon
-Images
-Robots.txt
-
-👉 These files are directly accessible (e.g. /vite.svg).
-
-3. src/ (Source Code Folder)
-All your React code lives here — components, CSS, images, logic, etc.
-Purpose: Entry point of your React app.
-It connects your React code to the real DOM.
-
-ReactDOM.createRoot(...) → tells React where to render (div#root in index.html)
-<App /> → main component rendered inside root div
-index.css → global styles
-
-b. App.jsx
-Purpose: The main component of your app — like the home layout.
-useState → React Hook to manage component state.
-JSX syntax (<>...</>) → how React defines UI.
-export default App → makes it usable in main.jsx.
-
-c. App.css
-Purpose: Component-level styling for App.jsx.
-
-d. index.css
-Purpose: Global CSS for your whole app (like body styles, fonts, etc.)
-
-e. assets/
-Purpose: Stores local images, icons, or static media.
-Example:
-react.svg — the React logo.
-
-
-4. index.html
-Purpose: The only HTML file in your project.
-<div id="root"> → React app mounts here.
-<script type="module"> → imports your React entry file (main.jsx).
-
-
-5. package.json
-Purpose: Manages project dependencies, scripts, and metadata.
-"dependencies" → libraries used in your project.
-"scripts" → commands you can run (like npm run dev).
-
-6. vite.config.js
-Purpose: Configuration file for Vite.
-Enables React plugin (JSX transformation, fast refresh).
-You can customize the server port, alias paths, and more.
-
-
-7. .gitignore
-Purpose: Lists files/folders Git should ignore.
+This shows the count value only if it’s greater than 0 — otherwise, it shows nothing (null).
